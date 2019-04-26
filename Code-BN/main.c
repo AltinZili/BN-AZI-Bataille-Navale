@@ -3,14 +3,14 @@
 
 #define longeur 10
 int grille[longeur][longeur] = {
-        1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-        3, 3, 3, 0, 0, 0, 0, 0, 0, 0,
-        4, 4, 4, 4, 0, 0, 0, 0, 0, 0,
-        5, 5, 5, 5, 5, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        1, 0, 0, 0, 0, 0, -1, 0, 0, 0,
+        12, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+        23, 23, 23, 0, 0, 0, 0, 0, 0, 0,
+        4, 14, 14, 4, 0, 0, 0, 0, 0, 0,
+        15, 5, 5, 5, 15, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, -1, 0, 0, 0, 0,
+        0, 0, 0, -1, 0, 0, 0, 0, 0, 0,
+        0, -1, 0, 0, 0, 0, 0, 0, 0, 0
 
 };
 
@@ -38,6 +38,7 @@ void aide() {
 #define SHBB 193 // -, Single Horizontal Bottom Border
 #define SHTB 194 // -, Single Horizontal Top Border
 #define SC   197 // +, Single Center
+#define TOUCHE 10
 
 void topborder(int taille) {
     printf("     ");
@@ -53,15 +54,32 @@ void topborder(int taille) {
 }
 
 void verticalborder(int taille, int numero) {
+    char caractere = ' ';
     printf("%d ", numero+1);
     if (numero < 9) {
         printf(" ");
     }
 int valeur_case;
-    char charactere = ' ';
     for (int i = 0; i < taille; i++) {
+
+    if (grille[numero][i] > 10 && grille[numero][i] < 20) {
+        caractere = 'X';
+    }
+    // boucle pour a l'eau affichage .
+    if (grille[numero][i] < 0) {
+        caractere = '~';
+    }
+
+    if (grille[numero][i] > 20 && grille[numero][i] < 30) {
+        caractere = 'O';
+    }
+    if(grille[numero][i] >= 0 && grille[numero][i] < 10)
+    {
+        caractere = ' ';
+    }
+
 valeur_case = grille[numero][i];
-        printf("%c %d%c", SVSB,grille[numero][i] ,charactere);
+        printf("%c %c ", SVSB ,caractere);
     }
     printf("%c\n", SVSB);
 }
