@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Altin.ZILI/Documents/GitHub/Bataille-navale/Code-BN/main.c
+E:/Bureau/BN-AZI-Bataille-Navale/Code-BN/main.c
 stdio.h
+-
+windows.h
 -
 

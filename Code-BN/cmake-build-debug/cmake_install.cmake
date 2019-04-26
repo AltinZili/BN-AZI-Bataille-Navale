@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Altin.ZILI/Documents/GitHub/Bataille-navale/Code-BN
+# Install script for directory: E:/Bureau/BN-AZI-Bataille-Navale/Code-BN
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Altin.ZILI/Documents/GitHub/Bataille-navale/Code-BN/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "E:/Bureau/BN-AZI-Bataille-Navale/Code-BN/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
