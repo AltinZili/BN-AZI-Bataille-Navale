@@ -1,6 +1,18 @@
 #include <stdio.h>
 #include <windows.h>
 
+#define longeur 10
+int grille[longeur][longeur] = {
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+        3, 3, 3, 0, 0, 0, 0, 0, 0, 0,
+        4, 4, 4, 4, 0, 0, 0, 0, 0, 0,
+        5, 5, 5, 5, 5, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+};
 
 void aide() {
     printf("AIDE: \n\nLe but de cette bataille navale est de tirer sur des cases pour éliminer les bâteaux cachés dans la grille.\n"
@@ -15,7 +27,6 @@ void aide() {
 }
 
 
-#define longeur 10
 #define STLC 218 // +, Single Top Left Corner
 #define STRC 191 // +, Single Top Right Corner
 #define SBLC 192 // +, Single Bottom Left Corner
@@ -42,15 +53,15 @@ void topborder(int taille) {
 }
 
 void verticalborder(int taille, int numero) {
-    printf("%d ", numero);
-    if (numero < 10) {
+    printf("%d ", numero+1);
+    if (numero < 9) {
         printf(" ");
     }
-
-    char charactere;
+int valeur_case;
+    char charactere = ' ';
     for (int i = 0; i < taille; i++) {
-
-        printf("%c %c ", SVSB, charactere);
+valeur_case = grille[numero][i];
+        printf("%c %d%c", SVSB,grille[numero][i] ,charactere);
     }
     printf("%c\n", SVSB);
 }
@@ -81,10 +92,13 @@ void affgrille() {
         if (row > 0) {
             horizontalborder(longeur);
         }
-        verticalborder(longeur, row + 1);
+        verticalborder(longeur, row );
     }
+
     bottomborder(longeur);
 };
+
+
 
 void jouer() {
     affgrille();
