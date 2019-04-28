@@ -2,17 +2,20 @@
 #include <windows.h>
 
 #define longeur 10
+
+
 int grille[longeur][longeur] = {
-        1, 0, 0, 0, 0, 0, -1, 0, 0, 0,
-        12, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-        23, 23, 23, 0, 0, 0, 0, 0, 0, 0,
-        4, 14, 14, 4, 0, 0, 0, 0, 0, 0,
-        15, 5, 5, 5, 15, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, -1, 0, 0, 0, 0,
-        0, 0, 0, -1, 0, 0, 0, 0, 0, 0,
-        0, -1, 0, 0, 0, 0, 0, 0, 0, 0
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+        3, 3, 3, 0, 0, 0, 0, 0, 0, 0,
+        4, 4, 4, 4, 0, 0, 0, 0, 0, 0,
+        5, 5, 5, 5, 5, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 };
+
 
 void aide() {
     printf("AIDE: \n\nLe but de cette bataille navale est de tirer sur des cases pour éliminer les bâteaux cachés dans la grille.\n"
@@ -41,6 +44,7 @@ void aide() {
 #define TOUCHE 10
 
 void topborder(int taille) {
+
     printf("     ");
     for (int j = 0; j < taille; ++j) {
         printf("%c   ", j + 'A');
@@ -54,34 +58,39 @@ void topborder(int taille) {
 }
 
 void verticalborder(int taille, int numero) {
+
+
+
     char caractere = ' ';
-    printf("%d ", numero+1);
+
+
+
+    printf("%d ", numero + 1);
     if (numero < 9) {
         printf(" ");
     }
-int valeur_case;
+    int valeur_case;
     for (int i = 0; i < taille; i++) {
 
-    if (grille[numero][i] > 10 && grille[numero][i] < 20) {
-        caractere = 'X';
-    }
-    // boucle pour a l'eau affichage .
-    if (grille[numero][i] < 0) {
-        caractere = '~';
-    }
+        if (grille[numero][i] > 10 && grille[numero][i] < 20) {
+            caractere = 'X';
+        }
+        if (grille[numero][i] < 0) {
+            caractere = '~';
+        }
 
-    if (grille[numero][i] > 20 && grille[numero][i] < 30) {
-        caractere = 'O';
-    }
-    if(grille[numero][i] >= 0 && grille[numero][i] < 10)
-    {
-        caractere = ' ';
-    }
+        if (grille[numero][i] > 20 && grille[numero][i] < 30) {
+            caractere = 'O';
+        }
+        if (grille[numero][i] >= 0 && grille[numero][i] < 10) {
+            caractere = ' ';
+        }
 
-valeur_case = grille[numero][i];
-        printf("%c %c ", SVSB ,caractere);
+        valeur_case = grille[numero][i];
+        printf("%c %c ", SVSB, caractere);
     }
     printf("%c\n", SVSB);
+
 }
 
 void horizontalborder(int taille) {
@@ -89,7 +98,7 @@ void horizontalborder(int taille) {
     for (int i = 0; i < taille - 1; i++) {
         printf("%c%c%c%c", SC, SHSB, SHSB, SHSB);
     }
-    printf("%c\n", SVRB);
+    printf("%c \n", SVRB);
 }
 
 void bottomborder(int taille) {
@@ -110,16 +119,123 @@ void affgrille() {
         if (row > 0) {
             horizontalborder(longeur);
         }
-        verticalborder(longeur, row );
+        verticalborder(longeur, row);
     }
 
     bottomborder(longeur);
+
 };
 
 
-
 void jouer() {
-    affgrille();
+
+
+
+
+
+
+    int x, y;
+    int fin = 0;
+    int compteur[5] = {0, 0, 0, 0, 0};
+    char choix[2];
+    while (fin < 1 + 2 + 3 + 4 + 5) {
+
+
+        affgrille();
+        printf("\n\n\nFaites votre tire :  ");
+        scanf("%s", choix);
+
+        x = choix[1] - 49;
+        y = choix[0] - 97;
+
+        if ((grille[x][y] > 0 && grille[x][y] < 10)) {
+            if(grille[x][y] < 10)
+            {
+                fin++;
+            }
+
+grille[x][y]+= 10;
+
+            if (grille[x][y] == 11) {
+                compteur[0]++;
+
+            }
+            if (grille[x][y] == 12) {
+                compteur[1]++;
+
+            }
+
+
+            if (grille[x][y] == 13) {
+                compteur[2]++;
+
+            }
+
+
+            if (grille[x][y] == 14) {
+                compteur[3]++;
+
+            }
+
+
+            if (grille[x][y] == 15) {
+                compteur[4]++;
+            }
+
+        }
+        if(compteur[0] == 1)
+        {
+            for (int i = 0; i < longeur; ++i) {
+                for (int j = 0; j < longeur; ++j) {
+                    if(grille[i][j] == 11)
+                    grille[i][j]+=10;
+                }
+            }
+        }
+        if(compteur[1] == 2)
+        {
+            for (int i = 0; i < longeur; ++i) {
+                for (int j = 0; j < longeur; ++j) {
+                    if(grille[i][j] == 12)
+                        grille[i][j]+=10;
+                }
+            }
+        }
+        if(compteur[2] == 3)
+        {
+            for (int i = 0; i < longeur; ++i) {
+                for (int j = 0; j < longeur; ++j) {
+                    if(grille[i][j] == 13)
+                        grille[i][j]+=10;
+                }
+            }
+        }
+        if(compteur[3] == 4)
+        {
+            for (int i = 0; i < longeur; ++i) {
+                for (int j = 0; j < longeur; ++j) {
+                    if(grille[i][j] == 14)
+                        grille[i][j]+=10;
+                }
+            }
+        }
+        if(compteur[4] == 5)
+        {
+            for (int i = 0; i < longeur; ++i) {
+                for (int j = 0; j < longeur; ++j) {
+                    if(grille[i][j] == 15)
+                        grille[i][j]+=10;
+                }
+            }
+        }
+        if (grille[x][y] == 0) {
+            grille[x][y] = -1;
+        }
+
+        system("cls");
+
+    }
+
 }
 
 int main() {
@@ -137,6 +253,7 @@ int main() {
             printf("\n\n\n\n\n\n\n");
             system("pause");
             system("cls");
+            main();
             break;
         case 2:
             aide();
@@ -144,6 +261,7 @@ int main() {
             system("pause");
             system("cls");
             main();
+            break;
 
         default:
             system("cls");
